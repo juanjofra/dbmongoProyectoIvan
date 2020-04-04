@@ -7,6 +7,9 @@ const app = express();
 //conectar bd mongo
 conectarDB();
 
+//Habilitar express .json
+app.use(express.json({ extended: true }));
+
 //crear puerto de escucha
 const port = 4000;
 
