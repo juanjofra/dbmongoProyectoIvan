@@ -1,5 +1,9 @@
 const express = require('express');
 const conectarDB = require('./config/db');
+const usuarios = require('./routes/usuarios');
+const auth = require('./routes/auth');
+const proyectos = require('./routes/proyectos');
+
 
 //crear el server
 const app = express();
@@ -13,8 +17,10 @@ app.use(express.json({ extended: true }));
 //crear puerto de escucha
 const port = 4000;
 
-//Importar rutas
-app.use('/api/usuarios', require('./routes/usuarios'));
+//Importar Rutas
+app.use('/api/usuarios', usuarios);
+app.use('/api/auth', auth);
+app.use('/api/proyectos', proyectos);
 
 //definir ruta raiz
 app.get('/', (req, res) => {
