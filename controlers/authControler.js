@@ -33,9 +33,11 @@ exports.loginUsuario = async (req, res) => {
         //Crear el Jwt
         const paylod = {
             usuario: {
-                id: usuario.id
+                id: usuario.id,
+                email: usuario.email
             }
-        }
+           
+         }
 
         //Firmar el Jwt
         jwt.sign(paylod, process.env.SECRETA, {

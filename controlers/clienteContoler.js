@@ -1,29 +1,11 @@
-const Proyecto = require('../models/Proyectos');
+const Cliente = require('../models/Cliente');
 const { validationResult } = require('express-validator');
 
-exports.crearProyecto = async (req, res) => {
 
-    //Verificar si hay errores
-    const errores = validationResult(req);
-    if(!errores.isEmpty()){
-        return res.status(400).json({errores: errores.array()});
-    }
-
-    //Creamos el proyecto
-    let proyecto = new Proyecto(req.body);
-    
-    //Agregamos la referencia fk
-    proyecto.creador = req.usuario.id;
-
-    await proyecto.save();
-    res.status(200).json(proyecto);
-
-}
-
-exports.obtenerProyectos = async (req, res) => {
+exports.index = async (req, res) => {
     try {
-        const proyectos = await Proyecto.find({ creador: req.usuario.id});
-        res.status(200).json({proyectos});
+        const clientes = await cliente.find();
+        res.status(200).json({clientes});
     } catch (error) {
         console.log(error);
         res.status(500).json({ msg: 'Error en la consulta'});
@@ -32,7 +14,26 @@ exports.obtenerProyectos = async (req, res) => {
     
 }
 
-exports.actualizarProyecto = async (req, res) => {
+exports.store = async (req, res) => {
+
+    //Verificar si hay errores
+    const errores = validationResult(req);
+    if(!errores.isEmpty()){
+        return res.status(400).json({errores: errores.array()});
+    }
+
+    //Creamos el cliente
+    let cliente = new Cliente(req.body);
+    console.log(cliente)
+
+    await cliente.save();
+    res.status(200).json(cliente);
+
+}
+
+
+
+exports.update = async (req, res) => {
     try {
     const proyectoId = req.params.id;
     let proyecto = await Proyecto.findById(proyectoId);

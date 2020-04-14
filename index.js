@@ -2,6 +2,7 @@ const express = require('express');
 const conectarDB = require('./config/db');
 const usuarios = require('./routes/usuarios');
 const auth = require('./routes/auth');
+const clientes = require('./routes/clientes');
 const proyectos = require('./routes/proyectos');
 
 
@@ -20,6 +21,7 @@ const port = 4000;
 //Importar Rutas
 app.use('/api/usuarios', usuarios);
 app.use('/api/auth', auth);
+app.use('/api/clientes', clientes);
 app.use('/api/proyectos', proyectos);
 
 //definir ruta raiz
