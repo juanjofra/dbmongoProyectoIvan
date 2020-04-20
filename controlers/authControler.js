@@ -21,6 +21,7 @@ exports.loginUsuario = async (req, res) => {
         let usuario = await Usuario.findOne({email});
         if(!usuario){
             return res.status(400).json({msg: 'Login incorrecto'});
+            console.log("ya existe el usuario")
         }
 
         //Verificar que el password sea correcto

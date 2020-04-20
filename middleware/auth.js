@@ -14,7 +14,6 @@ module.exports = function (req, res, next){
     //Validar token
     try {
         const tokencifrado = jwt.verify(token, process.env.SECRETA);
-        console.log(tokencifrado);
         req.usuario = tokencifrado.usuario;
         next();
     } catch (error) {

@@ -24,7 +24,6 @@ exports.store = async (req, res) => {
 
     //Creamos el cliente
     let cliente = new Cliente(req.body);
-    console.log(cliente)
 
     await cliente.save();
     res.status(200).json(cliente);

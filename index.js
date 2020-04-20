@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require("cors");
 const conectarDB = require('./config/db');
 const usuarios = require('./routes/usuarios');
 const auth = require('./routes/auth');
@@ -12,8 +13,11 @@ const app = express();
 //conectar bd mongo
 conectarDB();
 
+//Habilitar Cors
+app.use(cors());
+
 //Habilitar express .json
-app.use(express.json({ extended: true }));
+app.use(express.json({ extended: false }));
 
 //crear puerto de escucha
 const port = 4000;
