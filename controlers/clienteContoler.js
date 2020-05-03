@@ -3,10 +3,18 @@ const { validationResult } = require("express-validator");
 
 exports.index = async (req, res) => {
   try {
-    const clientes = await Cliente.find();
-    res.status(200).json({ clientes });
+    const { page = 1, limit = 10 } = req.query;
+
+    const option = {
+      page,
+      limit: parseInt(limit),
+      sort: { date: "desc" }
+    }
+
+    const clientes = await Cliente.paginate( {}, option);
+    res.status(200).json( clientes );
   } catch (error) {
-    console.log(error);
+    console.log(error.message);
     res.status(500).json({ msg: "Error en la consulta" });
   }
 };
@@ -27,20 +35,12 @@ exports.store = async (req, res) => {
 
 exports.update = async (req, res) => {
   try {
-    const proyectoId = req.params.id;
-    let proyecto = await Proyecto.findById(proyectoId);
-
-    //Verificar que sea el usuario logueado el que quira modificar el proyecto
-    if (proyecto.creador.toString() !== req.usuario.id) {
-      return res.status(403).json({ msg: "Permiso denegado lalala" });
-    }
-
-    proyecto.nombre = req.body.nombre;
-    await proyecto.save();
+    const clienteId = req.params.id;
+    let cliente = await Cliente.findByIdAndUpdate({ _id: clienteId}, { $set: req.body}, { new: true});
 
     res.status(201).json({
-      msg: "Se actualizo el proyecto",
-      obj: proyecto,
+      msg: "Se actualizo el Cliente",
+      obj: cliente,
     });
   } catch (error) {
     console.log(error);
@@ -48,19 +48,17 @@ exports.update = async (req, res) => {
   }
 };
 
-exports.eliminarProyecto = async (req, res) => {
+exports.active_desactive = async (req, res) => {
   try {
-    const proyectoId = req.params.id;
-    let proyecto = await Proyecto.findById(proyectoId);
+    const clienteId = req.params.id;
+    let cliente = await Cliente.findById(clienteId);
 
-    //Verificar que sea el usuario logueado el que quira modificar el proyecto
-    if (proyecto.creador.toString() !== req.usuario.id) {
-      return res.status(403).json({ msg: "Permiso denegado lalala" });
-    }
+    cliente.active = !cliente.active
+    cliente.save();
 
-    await proyecto.remove();
+    const mensaje = cliente.active ? "Activado" : "Desactivado"; 
 
-    res.status(201).json({ msg: "Proyecto Eliminado" });
+    res.status(201).json({ msg: `Cliente ${mensaje}`  });
   } catch (error) {
     console.log(error);
     res.status(500).json({ msg: "Error en el servidor" });
