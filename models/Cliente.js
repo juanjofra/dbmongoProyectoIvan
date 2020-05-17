@@ -7,7 +7,10 @@ const ClienteSchema = mongoose.Schema({
     ci : { type: String, required: true },
     direccion : String,
     barrio : String,
-    active : { type: Boolean, default: true }
+    active : { type: Boolean, default: true },
+    medidor: { type: mongoose.Schema.Types.ObjectId, ref: 'Medidor'},
+    date: { type: Date, default: Date.now()}
+
 
 });
 

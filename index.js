@@ -5,6 +5,8 @@ const usuarios = require('./routes/usuarios');
 const auth = require('./routes/auth');
 const clientes = require('./routes/clientes');
 const proyectos = require('./routes/proyectos');
+const medidores = require('./routes/Medidores');
+
 
 
 //crear el server
@@ -27,6 +29,7 @@ app.use('/api/usuarios', usuarios);
 app.use('/api/auth', auth);
 app.use('/api/clientes', clientes);
 app.use('/api/proyectos', proyectos);
+app.use('/api/medidores', medidores);
 
 //definir ruta raiz
 app.get('/', (req, res) => {

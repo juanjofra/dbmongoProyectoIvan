@@ -1,14 +1,16 @@
 const Cliente = require("../models/Cliente");
 const { validationResult } = require("express-validator");
 
+//Funcion que devuelve todos los clientes paginados
 exports.index = async (req, res) => {
   try {
-    const { page = 1, limit = 10 } = req.query;
+    const { page = 1, limit = 5 } = req.query;
 
     const option = {
       page,
       limit: parseInt(limit),
-      sort: { date: "desc" }
+      sort: { date: "desc" },
+      populate: 'medidor'
     }
 
     const clientes = await Cliente.paginate( {}, option);
