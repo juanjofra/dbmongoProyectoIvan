@@ -4,11 +4,10 @@ var uniqueValidator = require('mongoose-unique-validator');
 
 const ClienteSchema = mongoose.Schema({
     nombre : { type: String,  required: true },
-    ci : { type: String, required: true },
+    ci : String,
     direccion : String,
-    barrio : String,
     active : { type: Boolean, default: true },
-    medidor: { type: mongoose.Schema.Types.ObjectId, ref: 'Medidor'},
+    pedidos: { type: mongoose.Schema.Types.ObjectId, ref: 'Pedidos'},
     date: { type: Date, default: Date.now()}
 
 

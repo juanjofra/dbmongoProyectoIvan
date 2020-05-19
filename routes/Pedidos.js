@@ -1,15 +1,15 @@
 //Rutas de Clientes
 const express = require("express");
 const router = express.Router();
-const medidorControler = require("../controlers/medidorControler");
+const pedidosControler = require("../controlers/pedidosControler");
 const { check } = require("express-validator");
 const authMiddleware = require("../middleware/auth");
 
-//Crear un Medidor
-//api/medidores
+//Crear un Pedidos
+//api/pedidos
 // router.get("/", clienteControler.index);
 
-router.post("/register", [check("numero", "El numero es obligatorio").not().isEmpty()], medidorControler.store );
+router.post("/register", [check("numero", "El numero es obligatorio").not().isEmpty()], pedidosControler.store );
 
 // router.put("/update/:id", clienteControler.update );
 

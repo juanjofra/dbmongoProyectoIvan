@@ -5,7 +5,7 @@ const usuarios = require('./routes/usuarios');
 const auth = require('./routes/auth');
 const clientes = require('./routes/clientes');
 const proyectos = require('./routes/proyectos');
-const medidores = require('./routes/Medidores');
+const pedidos = require('./routes/Pedidos');
 
 
 
@@ -29,7 +29,7 @@ app.use('/api/usuarios', usuarios);
 app.use('/api/auth', auth);
 app.use('/api/clientes', clientes);
 app.use('/api/proyectos', proyectos);
-app.use('/api/medidores', medidores);
+app.use('/api/pedidos', pedidos);
 
 //definir ruta raiz
 app.get('/', (req, res) => {

@@ -1,4 +1,4 @@
-const Medidor = require("../models/Medidor");
+const Pedidos = require("../models/Pedidos");
 const { validationResult } = require("express-validator");
 
 exports.store = async (req, res) => {
@@ -8,9 +8,9 @@ exports.store = async (req, res) => {
     return res.status(400).json({ errores: errores.array() });
   }
 
-  //Creamos el Medidor
-  let medidor = new Medidor(req.body);
+  //Creamos el Pedidos
+  let pedidos = new Pedidos(req.body);
 
-  await medidor.save();
+  await pedidos.save();
   res.status(200).json(medidor);
 };
