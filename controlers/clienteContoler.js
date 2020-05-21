@@ -9,8 +9,7 @@ exports.index = async (req, res) => {
     const option = {
       page,
       limit: parseInt(limit),
-      sort: { date: "desc" },
-      populate: 'medidor'
+      sort: { nombre: 1 }
     }
 
     const clientes = await Cliente.paginate( {}, option);

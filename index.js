@@ -6,6 +6,8 @@ const auth = require('./routes/auth');
 const clientes = require('./routes/clientes');
 const proyectos = require('./routes/proyectos');
 const pedidos = require('./routes/Pedidos');
+const productos = require('./routes/Productos');
+const combo = require('./routes/Combo');
 
 
 
@@ -30,6 +32,8 @@ app.use('/api/auth', auth);
 app.use('/api/clientes', clientes);
 app.use('/api/proyectos', proyectos);
 app.use('/api/pedidos', pedidos);
+app.use('/api/productos', productos);
+app.use('/api/combo', combo);
 
 //definir ruta raiz
 app.get('/', (req, res) => {

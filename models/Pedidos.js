@@ -4,15 +4,13 @@ var uniqueValidator = require('mongoose-unique-validator');
 
 const PedidosSchema = mongoose.Schema({
     numero : { type: Number,  required: true },
-    cliente: { type: mongoose.Schema.Types.ObjectId, ref: 'Cliente'  },
-    status : { type: Boolean, required: true, default: true },
+    cliente: { type: mongoose.Schema.Types.ObjectId, ref: 'Cliente' },
+    status : { type: String, required: true, default: 'Pendiente' }, //Pendiente, Entregado
     total : Number,
     delibery: Number,
     total_gral: Number,
     date: { type: Date, default: Date.now()},
     detalle: []
-    
-
 });
 
 

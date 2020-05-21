@@ -1,4 +1,4 @@
-const Pedidos = require("../models/Pedidos");
+const Combo = require("../models/Combo");
 const { validationResult } = require("express-validator");
 
 
@@ -12,10 +12,10 @@ exports.index = async (req, res) => {
       sort: { date: "desc" }
     }
 
-    const pedidos = await Pedidos.paginate( {}, option);
-    res.status(200).json( pedidos );
+    const combo = await Combo.paginate( {}, option);
+    res.status(200).json( combo );
   } catch (error) {
-    console.log(error.message, 'Error pedidosControler funcion index');
+    console.log(error.message, 'Error comboControler funcion index');
     res.status(500).json({ msg: "Error en la consulta" });
   }
 };
@@ -29,24 +29,24 @@ exports.store = async (req, res) => {
   }
 
   //Creamos el Pedidos
-  let pedidos = new Pedidos(req.body);
+  let combo = new Combo(req.body);
 
-  await pedidos.save();
-  res.status(200).json(pedidos);
+  await combo.save();
+  res.status(200).json(combo);
 };
 
 
 exports.update = async (req, res) => {
   try {
-    const pedidosId = req.params.id;
-    let pedidos = await Pedidos.findByIdAndUpdate({ _id: pedidosId}, { $set: req.body}, { new: true});
+    const comboId = req.params.id;
+    let combo = await Combo.findByIdAndUpdate({ _id: comboId}, { $set: req.body}, { new: true});
 
     res.status(201).json({
-      msg: "Pedido actualizado",
-      obj: pedidos,
+      msg: "Combo actualizado",
+      obj: combo,
     });
   } catch (error) {
-    console.log(error, 'Error pedidosControler funcion update');
+    console.log(error, 'Error comboControler funcion update');
     res.status(500).json({ msg: "Error en el servidor" });
   }
 };
