@@ -7,7 +7,7 @@ const authMiddleware = require("../middleware/auth");
 
 //Crear un Pedidos
 //api/pedidos
-router.get("/", comboControler.index);
+router.get("/", comboControler.index); 
 
 router.post("/register", [check("producto", "El numero es obligatorio").not().isEmpty()], comboControler.store );
 

@@ -12,7 +12,7 @@ exports.index = async (req, res) => {
       sort: { date: "desc" }
     }
 
-    const combo = await Combo.paginate( {}, option);
+    const combo = await Combo.paginate({}, option);
     res.status(200).json( combo );
   } catch (error) {
     console.log(error.message, 'Error comboControler funcion index');

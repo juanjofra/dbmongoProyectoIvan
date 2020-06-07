@@ -8,6 +8,7 @@ const authMiddleware = require("../middleware/auth");
 //Crear un Clientes
 //api/clientes
 router.get("/", clienteControler.index);
+router.get("/buscador", clienteControler.buscador);
 
 router.post("/register", [check("nombre", "El nombre es obligatorio").not().isEmpty()], clienteControler.store );
 

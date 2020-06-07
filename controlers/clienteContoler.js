@@ -65,3 +65,24 @@ exports.active_desactive = async (req, res) => {
     res.status(500).json({ msg: "Error en el servidor" });
   }
 };
+
+//Funcion que devuelve todos los clientes de acuerdo a parametros ingresados paginados
+exports.buscador = async (req, res) => {
+  try {
+    const { page = 1, limit = 5 } = req.query;
+    const { nombre="", direccion="", cel='' } = req.body;
+    console.log(req.body);
+
+    const option = {
+      page,
+      limit: parseInt(limit),
+      sort: { nombre: 1 }
+    }
+
+    const clientes = await Cliente.paginate( {"nombre": {'$regex': nombre, '$options': 'i'}, "direccion": {'$regex': direccion, '$options': 'i'}},option);
+    res.status(200).json( clientes );
+  } catch (error) {
+    console.log(error.message);
+    res.status(500).json({ msg: "Error en la consulta" });
+  }
+};
