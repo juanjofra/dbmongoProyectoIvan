@@ -26,7 +26,7 @@ app.use(cors());
 app.use(express.json({ extended: false }));
 
 //crear puerto de escucha
-const port = 4000;
+const port = process.env.PORT || 4000;
 
 //Importar Rutas
 app.use('/api/usuarios', usuarios);
